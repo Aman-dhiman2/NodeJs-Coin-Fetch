@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Api Fetch in JS</title>
+    </head>
+    <body>
+        <h1>Fetch</h1>
+        <div id="myData"></div>
+        <script type="text/javascript">
+
+            fetch('https://api.coincap.io/v2/assets/bitcoin/markets')
+            .then((data)=>{
+                
+            //console.log(data)
+            return data.json();
+        })
+        .then((completeData)=>{
+            console.log(completeData)
+            var data1 = ""
+            completeData.map((values)=>{
+                data1+= 
+                `
+                    
+                    <p>${values.exchangeId}</p>
+                    
+
+                    `
+                });
+            document.getElementById("myData").innerHTML = data1 
+        }).catch(err=>{console.log(err)})
+
+    </script>
+    </body>
+</html>
+
+<!-- let fetchRes = fetch("https://api.coincap.io/v2/assets/bitcoin/markets")
+
+       fetchRes.then(result=>result.json())
+       .then(data=>{
+        
+            console.log(data)
+        })   -->

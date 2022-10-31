@@ -1,0 +1,21 @@
+  <script type="text/javascript">
+
+        fetch('https://api.coincap.io/v2/assets/bitcoin/markets')
+        .then((data)=>{
+            return data.json();
+        })
+        .then((completeData)=>{
+            let dataAppend = ""
+            completeData.map((value)=>{
+                dataAppend = 
+                `
+                    <div>
+                    <p>${value.exchangeId}</p>
+                    </div>
+
+                    `
+                }   
+            )
+        }).catch(err=>{console.log(err)})
+        document.getElementById("myData").innerHTML = dataAppend 
+    </script>

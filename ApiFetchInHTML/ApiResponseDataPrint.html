@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet"
+            href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+    </head>
+    <body>
+
+            <div id="demo" class="flex flex-wrap gap-8 md:flex-wrap-reverse "></div>
+
+        <script type="text/javascript">
+
+     /*    fetch('data.json').then((data)=>{return data.json()}).then((res)=>{
+            console.log(res.data)
+           console.log(res.data['name'])
+           console.log(res.data['rank'])
+           console.log(res.data['symbol'])
+           console.log(res.data['supply'])
+           console.log(res.data['priceUsd'])
+           console.log(res.data['marketCapUsd'])
+        })  
+         */
+        fetch('https://api.coincap.io/v2/assets/bitcoin/markets').then((data)=>{return data.json()}).then((res)=>{
+        //    console.log(res.data)
+        
+           /*  console.log(res.data[6].exchangeId)
+            console.log(res.data[6].baseId)
+            console.log(res.data[6].baseSymbol)
+            console.log(res.data[6].quoteSymbol)
+            console.log(res.data[6].volumePercent) */
+            
+            var data1 = ""
+            
+            for(let i=0;i<res.data.length;i++){
+                data1+= `
+                <div class=" p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 ">
+                <p class="font-normal text-gray-700 dark:text-gray-400"><b> ExchangeId </b>:- ${res.data[i].exchangeId}</p>
+                <p class="font-normal text-gray-700 dark:text-gray-400"> <b>BaseId </b>:- ${res.data[i].baseId}</p>
+                <p class="font-normal text-gray-700 dark:text-gray-400"> <b>Base Symbol</b> :- ${res.data[i].baseSymbol}</p>
+                <p class="font-normal text-gray-700 dark:text-gray-400"> <b>Quote Symbol </b>:-${res.data[i].quoteSymbol}</p>
+                </div>
+                `   
+                document.getElementById("demo").style.fontSize="20px";
+            }
+            document.getElementById("demo").innerHTML = data1 
+
+        })
+
+    </script>
+    </body>
+</html>
